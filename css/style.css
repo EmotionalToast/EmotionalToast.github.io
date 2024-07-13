@@ -280,3 +280,37 @@ h2{
         margin-right: 0%;
     }
 }
+
+@media only screen and (max-width: 800px) {
+    #content{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #cardDiv{
+        width: 100%;
+    }
+
+    #guessThatHeader{
+        font-size: 5vw;
+        white-space: nowrap; 
+        word-break: keep-all;
+    }
+
+    #guessDiv{
+        width: 100%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    #newCardButton{
+        width: 50%;
+    }
+
+    #typeLineDiv{
+        width: 100%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}

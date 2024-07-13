@@ -1,0 +1,248 @@
+@font-face {
+    font-family: Beleren;
+    src: url(../fonts/belerensmallcaps-bold_0.ttf);
+}
+
+@font-face {
+    font-family: ModMatrix;
+    src: url(../fonts/matrixb_0.ttf);
+}
+
+body{
+    background-color: rgb(20, 20, 20);
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#content{
+    width: 75%;
+    margin: auto;
+}
+
+h1{
+    font-weight: bold;
+}
+
+h2{
+    font-weight: normal;
+}
+
+#headerDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:16%;
+}
+
+#settingsButton{
+    flex: initial;
+}
+
+#guessThatHeader{
+    flex: initial;
+    font-size: 2vw;
+    font-family: Beleren;
+}
+
+#newCardButton{
+    height: 50%;
+    flex: initial;
+    background-color: #835092;
+    border: none;
+    color: aliceblue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+#newCardButton:hover{
+    background-color: #a271b1;
+    cursor: pointer;
+}
+
+#cardDiv{
+
+}
+
+#guessDiv{
+    /* This bit sets up the horizontal layout */
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+
+    /* I've used padding so you can see the edges of the elements. */
+    padding:1%;
+
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #000;
+    border-radius: 15px / 50px;
+    background-color: aliceblue;
+    width: 50%;
+
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 
+        inset 0 2px 3px rgba(255,255,255,0.7),
+        inset 0 -2px 3px rgba(0,0,0,0.3),
+        0 1px 1px rgba(255,255,255,0.9);
+}
+
+#guessDiv:focus-within{
+    outline: 1px solid rgb(0, 0, 0)
+}
+
+#guessInput{
+    /* Tell the input to use all the available space */
+    flex-grow:2;
+    /* And hide the input's outline, so the form looks like the outline */
+    border:none;
+
+    background-color: transparent;
+    height: 100%;
+    line-height: normal;
+    color: #282828;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    user-select: auto;
+    font-size: 36px;
+    font-family: ModMatrix;
+    padding: 0 6px;
+    padding-left: 12px;
+}
+
+#guessInput:focus{
+    outline: none;
+}
+
+#guessButton{
+    font-size: 150%;
+}
+
+#artDiv{
+    width: 100%;
+    padding: 1%;
+}
+
+.responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+#randImageTag{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #000;
+}
+
+#typeLineDiv{
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #000;
+    border-radius: 15px / 50px;
+    background-color: aliceblue;
+    width: 50%;
+    
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 
+        inset 0 2px 3px rgba(255, 255, 255, 0.7),
+        inset 0 -2px 3px rgba(0,0,0,0.3),
+        0 1px 1px rgba(255,255,255,0.9);
+}
+
+#typeLineHeading{
+    color: #282828;
+    padding: 0.5%;
+    font-family: ModMatrix;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+#hintDiv{
+
+}
+
+#scoreDiv{
+
+}
+
+/*All my wonderful CSS I stole*/
+.gg-arrow-right-o {
+    color: #000;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs,1));
+    border-radius: 20px;
+    transition-duration: 0.4s;
+}
+.gg-arrow-right-o:hover{
+    color: #585858;
+    transition: top ease 0.5s;
+    cursor: pointer;
+}
+.gg-arrow-right-o::after,
+.gg-arrow-right-o::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    right: 4px
+}
+.gg-arrow-right-o::after {
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(45deg);
+    bottom: 6px
+}
+.gg-arrow-right-o::before {
+    width: 10px;
+    height: 2px;
+    bottom: 8px;
+    background: currentColor
+}
+
+.gg-format-justify,
+.gg-format-justify::before {
+    color:aliceblue;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    background: currentColor;
+    box-shadow: 0 8px 0
+}
+.gg-format-justify {
+    margin-top: -11px;
+    transform: scale(var(--ggs,1));
+    position: relative
+}
+.gg-format-justify::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 0
+}
+
+.error {
+    position: relative;
+    animation: shake .1s ease-in-out;
+    animation-iteration-count: 3;
+}
+
+@keyframes shake {
+    0% { left: -5px; }
+    100% { right: -5px; }
+}

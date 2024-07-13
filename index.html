@@ -4,12 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmotionalToast Projects</title>
+    <title>Magic Art Quiz</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/arrow-right-o.css' rel='stylesheet'>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/format-justify.css' rel='stylesheet'>
 </head>
 <body>
-    <div id="content"></div>
+    <div id="content">
+        <header id="headerDiv">
+            <i id="settingsButton" class="gg-format-justify" onclick="settingsFunction()"></i>
+            <h1 id="guessThatHeader">What's that card?</h1>
+            <button id="newCardButton" onclick="giveUp()">Give up</button>
+        </header>
+        <div id="cardDiv">
+            <div id="guessDiv">
+                <input id="guessInput" type="text" placeholder="Name that card!">
+                <i id="guessButton" class="gg-arrow-right-o" onclick="submitGuess()"></i>
+            </div>
+            <div id="artDiv">
+                <img id="randImageTag" class="responsive">
+            </div>
+            <div id="typeLineDiv">
+                <h1 id="typeLineHeading"></h1>
+            </div>
+            <div id="hintDiv"></div>
+            <div id="scoreDiv"></div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 </body>
 </html>

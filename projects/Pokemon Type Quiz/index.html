@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Type matchup quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main id="app">
+  <div class="topbar">
+    <h1 class="title" aria-label="Type Matchup Quiz"><span class="word" aria-hidden="true">Typé Matchup</span><span class="quiz" aria-hidden="true">Quiz</span></h1>
+    <div class="tools">
+      <button class="icon-btn" id="open-stats" type="button" aria-label="Stats">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 21V13M12 21V4M19 21V9"/></svg>
+      </button>
+      <button class="icon-btn" id="open-options" type="button" aria-label="Options">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <section class="prompt">
+    <p id="prompt-text">When this type is attacked, which types are…</p>
+    <div class="badges" id="badges"></div>
+  </section>
+
+  <section class="panel" id="panel-weak">
+    <div class="panel-head"><h2>Weak to</h2><span class="desc" id="desc-weak"></span><span class="count" id="count-weak" hidden></span></div>
+    <div class="grid" data-cat="weak"></div>
+  </section>
+  <section class="panel" id="panel-resist">
+    <div class="panel-head"><h2>Resists</h2><span class="desc" id="desc-resist"></span><span class="count" id="count-resist" hidden></span></div>
+    <div class="grid" data-cat="resist"></div>
+  </section>
+  <section class="panel" id="panel-immune">
+    <div class="panel-head"><h2>Immune to</h2><span class="desc" id="desc-immune"></span><span class="count" id="count-immune" hidden></span></div>
+    <div class="grid" data-cat="immune"></div>
+  </section>
+
+  <div class="actions">
+    <button class="btn ghost" id="clear" type="button">Clear all</button>
+    <button class="btn primary" id="submit" type="button">Submit</button>
+    <button class="btn primary" id="next" type="button" hidden>Next type</button>
+  </div>
+
+  <section class="result" id="result" hidden aria-live="polite"></section>
+</main>
+
+<!-- Options -->
+<div class="overlay" id="overlay-options" role="dialog" aria-modal="true" aria-labelledby="t-options" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="t-options">Options</h2>
+      <button class="icon-btn close" type="button" data-close aria-label="Close">×</button>
+    </div>
+    <p class="opt-note" id="opt-note" aria-live="polite"></p>
+
+    <div class="group-title">Type mode</div>
+    <div class="seg" role="radiogroup" aria-label="Type mode">
+      <label><input type="radio" name="mode" value="mono"><span>Single type</span></label>
+      <label><input type="radio" name="mode" value="dual"><span>Dual type</span></label>
+    </div>
+    <span class="opt-sub" id="mode-note"></span>
+
+    <div class="group-title">Boxes</div>
+    <label class="opt"><span><span class="opt-title">Weakness box</span><span class="opt-sub">Moves that are super effective</span></span><input class="switch" type="checkbox" id="opt-weak"></label>
+    <label class="opt"><span><span class="opt-title">Resistance box</span><span class="opt-sub">Moves that are not very effective</span></span><input class="switch" type="checkbox" id="opt-resist"></label>
+    <label class="opt"><span><span class="opt-title">Immunity box</span><span class="opt-sub">Moves that have no effect</span></span><input class="switch" type="checkbox" id="opt-immune"></label>
+
+    <div class="group-title types-title"><span>Types in the quiz</span><button class="btn ghost tiny" id="types-all" type="button">Turn all on</button></div>
+    <span class="opt-sub" id="types-note"></span>
+    <div class="type-toggles" id="type-toggles"></div>
+
+    <div class="group-title">Hints</div>
+    <label class="opt"><span><span class="opt-title">Show answer counts</span><span class="opt-sub">Shows how many types belong in each box</span></span><input class="switch" type="checkbox" id="opt-hints"></label>
+
+    <div class="group-title">Layout</div>
+    <label class="opt"><span><span class="opt-title">Shuffle type order</span><span class="opt-sub">Mixes up where the types sit in the boxes every question</span></span><input class="switch" type="checkbox" id="opt-shuffle"></label>
+
+    <div class="modal-foot"><button class="btn ghost small" id="reset-defaults" type="button">Reset to defaults</button></div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="overlay" id="overlay-stats" role="dialog" aria-modal="true" aria-labelledby="t-stats" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="t-stats">Stats</h2>
+      <button class="icon-btn close" type="button" data-close aria-label="Close">×</button>
+    </div>
+    <div id="stats-body"></div>
+    <div class="modal-foot"><button class="btn ghost small" id="reset-stats" type="button">Reset stats</button></div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "title": "Magic: The Gathering Art Quiz",
+  "description": "Given a random Magic: The Gathering card's art, can you guess which one it is?",
+  "tags": ["MTG", "Quiz"],
+  "order": 2
+}

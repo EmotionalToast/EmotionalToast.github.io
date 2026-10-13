@@ -1,316 +1,107 @@
-@font-face {
-    font-family: Beleren;
-    src: url(../fonts/belerensmallcaps-bold_0.ttf);
+:root {
+  color-scheme: dark;
+  box-sizing: border-box;
+  --bg: #26272a;
+  --panel: #303236;
+  --panel-2: #3a3c41;
+  --line: #4a4c52;
+  --text: #ececee;
+  --muted: #a3a6ad;
+  --purple: #8b5cf6;
+  --purple-2: #a78bfa;
+  --purple-3: #c4b5fd;
+  --purple-deep: #3b1d78;
+  --font: "Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
 }
-
-@font-face {
-    font-family: ModMatrix;
-    src: url(../fonts/matrixb_0.ttf);
+html { scroll-padding-top: 16px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+*, *::before, *::after { box-sizing: inherit; }
+[hidden] { display: none !important; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font); font-size: 16px; line-height: 1.5;
+  padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px);
 }
+a { color: inherit; }
 
-body{
-    background-color: rgb(20, 20, 20);
-    color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
+/* ---------- hero ---------- */
+.hero {
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px 24px;
+  overflow: hidden;
 }
-
-#content{
-    width: 75%;
-    margin: auto;
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(640px 420px at 50% 46%, rgba(139, 92, 246, 0.24), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.5px) 0 0 / 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 80%);
+          mask-image: radial-gradient(ellipse at center, #000 35%, transparent 80%);
 }
+.hero > * { position: relative; }
 
-h1{
-    font-weight: bold;
+.nav {
+  position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: 16px;
+  display: flex; gap: 6px;
 }
-
-h2{
-    font-weight: normal;
+.nav a {
+  text-decoration: none; font-weight: 600; font-size: 0.95rem; color: var(--muted);
+  padding: 7px 14px; border-radius: 999px; border: 1px solid transparent;
+  -webkit-tap-highlight-color: transparent;
 }
+@media (hover: hover) { .nav a:hover { color: var(--text); border-color: var(--line); background: var(--panel); } }
+.nav a:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 
-#headerDiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:16%;
+.name { margin: 0; line-height: 0; }
+.name img {
+  display: block; width: min(680px, 88vw); height: auto;
+  filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.45));
 }
-
-#settingsButton{
-    flex: initial;
+.sub {
+  margin: 18px 0 0; display: flex; align-items: center; gap: 14px;
+  font-size: clamp(1rem, 3.4vw, 1.35rem); font-weight: 600; letter-spacing: 0.04em; color: var(--muted);
 }
+.sub::before, .sub::after { content: ""; width: clamp(24px, 8vw, 64px); height: 2px; border-radius: 1px; background: var(--purple); opacity: 0.8; }
 
-#guessThatHeader{
-    flex: initial;
-    font-size: 2vw;
-    font-family: Beleren;
+.cta {
+  margin-top: 40px; display: inline-flex; align-items: center; gap: 8px;
+  font: inherit; font-weight: 600; font-size: 1.05rem; text-decoration: none;
+  padding: 12px 26px; border-radius: 10px;
+  background: var(--purple); color: #fff; box-shadow: 0 3px 0 var(--purple-deep);
+  -webkit-tap-highlight-color: transparent;
 }
+@media (hover: hover) { .cta:hover { background: var(--purple-2); } }
+.cta:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--purple-deep); }
+.cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.cta svg { width: 18px; height: 18px; }
 
-#newCardButton{
-    height: 50%;
-    flex: initial;
-    background-color: #835092;
-    border: none;
-    color: aliceblue;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 8px;
-    transition-duration: 0.4s;
+/* ---------- projects ---------- */
+.projects { max-width: 920px; margin: 0 auto; padding: 56px 16px 40px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.section-head h2 { margin: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+.section-head span { color: var(--muted); font-size: 0.95rem; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.card {
+  display: flex; flex-direction: column; gap: 8px; padding: 18px 18px 16px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: inset 4px 0 0 var(--purple);
+  text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent;
 }
-
-#newCardButton:hover{
-    background-color: #a271b1;
-    cursor: pointer;
+@media (hover: hover) { a.card:hover { background: var(--panel-2); border-color: var(--purple-2); } }
+a.card:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.card h3 { margin: 0; font-size: 1.2rem; font-weight: 600; }
+.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.tag {
+  font-size: 0.78rem; font-weight: 600; padding: 2px 10px; border-radius: 999px;
+  background: rgba(139, 92, 246, 0.18); color: var(--purple-3); border: 1px solid rgba(167, 139, 250, 0.35);
 }
+.open { margin-top: auto; padding-top: 6px; font-weight: 600; color: var(--purple-3); }
+.card.soon { border-style: dashed; box-shadow: none; background: transparent; }
+.card.soon h3 { color: var(--muted); }
 
-#cardDiv{
-
-}
-
-#guessDiv{
-    /* This bit sets up the horizontal layout */
-    display:flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: center;
-
-    /* I've used padding so you can see the edges of the elements. */
-    padding:1%;
-
-    margin-left: auto;
-    margin-right: auto;
-    border: 3px solid #000;
-    border-radius: 15px / 50px;
-    background-color: aliceblue;
-    width: 50%;
-
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 
-        inset 0 2px 3px rgba(255,255,255,0.7),
-        inset 0 -2px 3px rgba(0,0,0,0.3),
-        0 1px 1px rgba(255,255,255,0.9);
-}
-
-#guessDiv:focus-within{
-    outline: 1px solid rgb(0, 0, 0)
-}
-
-#guessInput{
-    /* Tell the input to use all the available space */
-    flex-grow:2;
-    /* And hide the input's outline, so the form looks like the outline */
-    border:none;
-
-    background-color: transparent;
-    height: 100%;
-    line-height: normal;
-    color: #282828;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    user-select: auto;
-    font-size: 36px;
-    font-family: ModMatrix;
-    padding: 0 6px;
-    padding-left: 12px;
-}
-
-#guessInput:focus{
-    outline: none;
-}
-
-#guessButton{
-    font-size: 150%;
-}
-
-#artDiv{
-    width: 100%;
-    padding: 1%;
-}
-
-.responsive {
-    max-width: 100%;
-    height: auto;
-}
-
-#randImageTag{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border: 3px solid #000;
-}
-
-#typeLineDiv{
-    margin-left: auto;
-    margin-right: auto;
-    border: 3px solid #000;
-    border-radius: 15px / 50px;
-    background-color: aliceblue;
-    width: 50%;
-    
-    border: 1px solid rgba(0,0,0,0.1);
-    box-shadow: 
-        inset 0 2px 3px rgba(255, 255, 255, 0.7),
-        inset 0 -2px 3px rgba(0,0,0,0.3),
-        0 1px 1px rgba(255,255,255,0.9);
-}
-
-#typeLineHeading{
-    color: #282828;
-    padding: 0.5%;
-    font-family: ModMatrix;
-    margin-top: 0%;
-    margin-bottom: 0%;
-}
-
-#hintDiv{
-
-}
-
-#scoreDiv{
-
-}
-
-/*All my wonderful CSS I stole*/
-.gg-arrow-right-o {
-    color: #000;
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    width: 22px;
-    height: 22px;
-    border: 2px solid;
-    transform: scale(var(--ggs,1));
-    border-radius: 20px;
-    transition-duration: 0.4s;
-}
-.gg-arrow-right-o:hover{
-    color: #585858;
-    transition: top ease 0.5s;
-    cursor: pointer;
-}
-.gg-arrow-right-o::after,
-.gg-arrow-right-o::before {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    right: 4px
-}
-.gg-arrow-right-o::after {
-    width: 6px;
-    height: 6px;
-    border-top: 2px solid;
-    border-right: 2px solid;
-    transform: rotate(45deg);
-    bottom: 6px
-}
-.gg-arrow-right-o::before {
-    width: 10px;
-    height: 2px;
-    bottom: 8px;
-    background: currentColor
-}
-
-.gg-format-justify,
-.gg-format-justify::before {
-    color:aliceblue;
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-    background: currentColor;
-    box-shadow: 0 8px 0
-}
-.gg-format-justify {
-    margin-top: -11px;
-    transform: scale(var(--ggs,1));
-    position: relative
-}
-.gg-format-justify::before {
-    content: "";
-    position: absolute;
-    top: 4px;
-    left: 0
-}
-
-.error {
-    position: relative;
-    animation: shake .1s ease-in-out;
-    animation-iteration-count: 3;
-}
-
-@keyframes shake {
-    0% { left: -5px; }
-    100% { right: -5px; }
-}
-
-@media only screen and (max-width: 600px) {
-    #content{
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #cardDiv{
-        width: 100%;
-    }
-
-    #guessThatHeader{
-        font-size: 5vw;
-        white-space: nowrap; 
-        word-break: keep-all;
-    }
-
-    #guessDiv{
-        width: 100%;
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-
-    #newCardButton{
-        width: 50%;
-    }
-
-    #typeLineDiv{
-        width: 100%;
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    #content{
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #cardDiv{
-        width: 100%;
-    }
-
-    #guessThatHeader{
-        font-size: 5vw;
-        white-space: nowrap; 
-        word-break: keep-all;
-    }
-
-    #guessDiv{
-        width: 100%;
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-
-    #newCardButton{
-        width: 50%;
-    }
-
-    #typeLineDiv{
-        width: 100%;
-        margin-left: 0%;
-        margin-right: 0%;
-    }
-}
+.status { margin: 14px 0 0; color: var(--muted); }
+footer { max-width: 920px; margin: 0 auto; padding: 8px 16px calc(36px + env(safe-area-inset-bottom, 0px)); color: var(--muted); font-size: 0.9rem; }
+footer a { color: var(--purple-3); }
